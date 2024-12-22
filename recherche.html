@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlixBox - Recherche</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #141414;
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #202020;
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e50914;
+        }
+
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .search-bar {
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-bar input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #e50914;
+            color: white;
+            cursor: pointer;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .search-bar button:hover {
+            background-color: #f40612;
+        }
+
+        .results {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .results p {
+            font-size: 18px;
+        }
+
+        footer {
+            background-color: #202020;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 0;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">FlixBox</div>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="films.html">Films</a>
+            <a href="series.html">Séries</a>
+            <a href="anime.html">Anime</a>
+            <a href="recherche.html">Recherche</a>
+        </nav>
+    </header>
+
+    <div class="content">
+        <h2>Résultats de recherche</h2>
+        <p>Recherchez vos films, séries ou anime préférés :</p>
+        <div class="search-bar">
+            <input type="text" placeholder="Rechercher...">
+            <button>Rechercher</button>
+        </div>
+
+        <div class="results">
+            <p>Aucun résultat trouvé. Essayez une autre recherche.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 FlixBox. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
