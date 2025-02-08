@@ -3,150 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/index.css">
     <title>FlixBox - Votre plateforme de streaming</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #141414;
-            color: #fff;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #202020;
-        }
-
-        header .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #e50914;
-        }
-
-        header nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-
-        header nav a:hover {
-            text-decoration: underline;
-        }
-
-        .search-bar {
-            margin: 20px auto;
-            display: flex;
-            justify-content: center;
-        }
-
-        .search-bar input[type="text"] {
-            width: 50%;
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px 0 0 5px;
-        }
-
-        .search-bar button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            background-color: #e50914;
-            color: white;
-            cursor: pointer;
-            border-radius: 0 5px 5px 0;
-        }
-
-        .search-bar button:hover {
-            background-color: #f40612;
-        }
-
-        .banner {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 80vh;
-            background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
-            text-align: center;
-        }
-
-        .banner h1 {
-            font-size: 48px;
-            margin: 0;
-        }
-
-        .banner p {
-            font-size: 24px;
-            margin: 10px 0;
-        }
-
-        .banner button {
-            background-color: #e50914;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .banner button:hover {
-            background-color: #f40612;
-        }
-
-        .content {
-            padding: 20px;
-        }
-
-        .movie {
-            display: inline-block;
-            margin: 10px;
-            text-align: center;
-        }
-
-        .movie img {
-            width: 200px;
-            height: 300px;
-            border-radius: 10px;
-        }
-
-        .movie p {
-            margin: 5px 0;
-        }
-
-        footer {
-            background-color: #202020;
-            text-align: center;
-            padding: 10px 0;
-            margin-top: 20px;
-        }
-
-        footer p {
-            margin: 0;
-            color: #aaa;
-        }
-    </style>
 </head>
 <body>
     <header>
         <div class="logo">FlixBox</div>
+        <!-- Barre de recherche responsive -->
+<div class="search-container">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Rechercher..."
+        oninput="showSuggestions(this.value)"
+    >
+    <div id="searchSuggestions" class="suggestions"></div>
+</div>
+    
+        <!-- Icône burger -->
+        <div class="burger-menu" onclick="toggleMobileMenu()">☰</div>
+    
+        <!-- Menu classique (PC) -->
         <nav>
             <a href="index.html">Accueil</a>
             <a href="films.html">Films</a>
             <a href="series.html">Séries</a>
             <a href="anime.html">Anime</a>
-            <a href="index.html">Mon compte</a>
+            <a href="recherche.html">Recherche</a>
+            <a href="mon-compte.html" id="account-button">Mon compte</a>
         </nav>
-    </header>
+    
+        <!-- Menu mobile -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Accueil</a>
+            <a href="films.html">Films</a>
+            <a href="series.html">Séries</a>
+            <a href="anime.html">Anime</a>
+            <a href="recherche.html">Recherche</a>
+            <a href="mon-compte.html" id="account-button">Mon compte</a>
+        </div>
 
-    <div class="search-bar">
-        <input type="text" placeholder="Rechercher un anime...">
-        <button>Rechercher</button>
-    </div>
+    </header>    
 
+    <div id="progression"></div>
     <div class="banner">
         <div>
             <h1>Bienvenue sur FlixBox</h1>
@@ -154,29 +53,117 @@
             <button>Commencer maintenant</button>
         </div>
     </div>
+    <h2>Top 10 des Films</h2>
+    <div class="top-list">
+        <div class="item"><div class="details"><span>1.</span> Film 1</div><img src="https://via.placeholder.com/150x200" alt="Film 1"></div>
+        <div class="item"><div class="details"><span>2.</span> Film 2</div><img src="https://via.placeholder.com/150x200" alt="Film 2"></div>
+        <div class="item"><div class="details"><span>3.</span> Film 3</div><img src="https://via.placeholder.com/150x200" alt="Film 3"></div>
+        <div class="item"><div class="details"><span>4.</span> Film 4</div><img src="https://via.placeholder.com/150x200" alt="Film 4"></div>
+        <div class="item"><div class="details"><span>5.</span> Film 5</div><img src="https://via.placeholder.com/150x200" alt="Film 5"></div>
+        <div class="item"><div class="details"><span>6.</span> Film 6</div><img src="https://via.placeholder.com/150x200" alt="Film 6"></div>
+        <div class="item"><div class="details"><span>7.</span> Film 7</div><img src="https://via.placeholder.com/150x200" alt="Film 7"></div>
+        <div class="item"><div class="details"><span>8.</span> Film 8</div><img src="https://via.placeholder.com/150x200" alt="Film 8"></div>
+        <div class="item"><div class="details"><span>9.</span> Film 9</div><img src="https://via.placeholder.com/150x200" alt="Film 9"></div>
+        <div class="item"><div class="details"><span>10.</span> Film 10</div><img src="https://via.placeholder.com/150x200" alt="Film 10"></div>
+    </div>
 
-    <div class="content">
-        <h2>Films populaires</h2>
-        <div class="movie">
-            <img src="https://via.placeholder.com/200x300" alt="Movie 1">
-            <p>Film 1</p>
-        </div>
-        <div class="movie">
-            <img src="https://via.placeholder.com/200x300" alt="Movie 2">
-            <p>Film 2</p>
-        </div>
-        <div class="movie">
-            <img src="https://via.placeholder.com/200x300" alt="Movie 3">
-            <p>Film 3</p>
-        </div>
-        <div class="movie">
-            <img src="https://via.placeholder.com/200x300" alt="Movie 4">
-            <p>Film 4</p>
-        </div>
+    <!-- Top 10 des Séries -->
+    <h2>Top 10 des Séries</h2>
+    <div class="top-list">
+        <div class="item"><div class="details"><span>1.</span> Série 1</div><img src="https://via.placeholder.com/150x200" alt="Série 1"></div>
+        <div class="item"><div class="details"><span>2.</span> Série 2</div><img src="https://via.placeholder.com/150x200" alt="Série 2"></div>
+        <div class="item"><div class="details"><span>3.</span> Série 3</div><img src="https://via.placeholder.com/150x200" alt="Série 3"></div>
+        <div class="item"><div class="details"><span>4.</span> Série 4</div><img src="https://via.placeholder.com/150x200" alt="Série 4"></div>
+        <div class="item"><div class="details"><span>5.</span> Série 5</div><img src="https://via.placeholder.com/150x200" alt="Série 5"></div>
+        <div class="item"><div class="details"><span>6.</span> Série 6</div><img src="https://via.placeholder.com/150x200" alt="Série 6"></div>
+        <div class="item"><div class="details"><span>7.</span> Série 7</div><img src="https://via.placeholder.com/150x200" alt="Série 7"></div>
+        <div class="item"><div class="details"><span>8.</span> Série 8</div><img src="https://via.placeholder.com/150x200" alt="Série 8"></div>
+        <div class="item"><div class="details"><span>9.</span> Série 9</div><img src="https://via.placeholder.com/150x200" alt="Série 9"></div>
+        <div class="item"><div class="details"><span>10.</span> Série 10</div><img src="https://via.placeholder.com/150x200" alt="Série 10"></div>
+    </div>
+
+    <!-- Top 10 des Animés -->
+    <h2>Top 10 des Animés</h2>
+    <div class="top-list">
+        <div class="item"><div class="details"><span>1.</span> Anime 1</div><img src="https://via.placeholder.com/150x200" alt="Anime 1"></div>
+        <div class="item"><div class="details"><span>2.</span> Anime 2</div><img src="https://via.placeholder.com/150x200" alt="Anime 2"></div>
+        <div class="item"><div class="details"><span>3.</span> Anime 3</div><img src="https://via.placeholder.com/150x200" alt="Anime 3"></div>
+        <div class="item"><div class="details"><span>4.</span> Anime 4</div><img src="https://via.placeholder.com/150x200" alt="Anime 4"></div>
+        <div class="item"><div class="details"><span>5.</span> Anime 5</div><img src="https://via.placeholder.com/150x200" alt="Anime 5"></div>
+        <div class="item"><div class="details"><span>6.</span> Anime 6</div><img src="https://via.placeholder.com/150x200" alt="Anime 6"></div>
+        <div class="item"><div class="details"><span>7.</span> Anime 7</div><img src="https://via.placeholder.com/150x200" alt="Anime 7"></div>
+        <div class="item"><div class="details"><span>8.</span> Anime 8</div><img src="https://via.placeholder.com/150x200" alt="Anime 8"></div>
+        <div class="item"><div class="details"><span>9.</span> Anime 9</div><img src="https://via.placeholder.com/150x200" alt="Anime 9"></div>
+        <div class="item"><div class="details"><span>10.</span> Anime 10</div><img src="https://via.placeholder.com/150x200" alt="Anime 10"></div>
     </div>
 
     <footer>
         <p>&copy; 2024 FlixBox. Tous droits réservés.</p>
     </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu.style.display === 'flex') {
+                mobileMenu.style.display = 'none';
+            } else {
+                mobileMenu.style.display = 'flex';
+            }
+        }
+    </script>
+      
+      <script>
+        const data = [
+        {
+            name: "Assassination Classroom: The Last Airbender",
+            type: "Anime",
+            image: "https://via.placeholder.com/150x200",
+            url: "/anime/assassination-classroom/saison.html"
+        }
+        ];
+    
+        function showSuggestions(value) {
+            const suggestionsContainer = document.getElementById("searchSuggestions");
+            suggestionsContainer.innerHTML = "";
+    
+            if (value.trim() === "") {
+                suggestionsContainer.style.display = "none";
+                return;
+            }
+    
+            const filteredData = data.filter(item =>
+                item.name.toLowerCase().includes(value.toLowerCase())
+            );
+    
+            if (filteredData.length === 0) {
+                suggestionsContainer.style.display = "none";
+                return;
+            }
+    
+            filteredData.forEach(item => {
+                const suggestionItem = document.createElement("div");
+                suggestionItem.className = "suggestion-item";
+                suggestionItem.onclick = () => window.location.href = item.url; // Redirection vers la page
+    
+                suggestionItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <span>${item.name} (${item.type})</span>
+                `;
+    
+                suggestionsContainer.appendChild(suggestionItem);
+            });
+    
+            suggestionsContainer.style.display = "block";
+        }
+    
+        // Fermer les suggestions si on clique à l'extérieur
+        document.addEventListener("click", function (event) {
+            const searchContainer = document.querySelector(".search-container");
+            if (!searchContainer.contains(event.target)) {
+                document.getElementById("searchSuggestions").style.display = "none";
+            }
+        });
+    </script>    
+
 </body>
 </html>

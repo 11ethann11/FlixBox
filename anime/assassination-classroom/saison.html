@@ -1,79 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style/series.css">
-    <title>FlixBox - Séries</title>
+    <link rel="stylesheet" href="/style//anime/AC/saisonAC.css">
+    <title>FlixBox - Assassination Classroom</title>
 </head>
 <body>
     <header>
         <div class="logo">FlixBox</div>
-        <!-- Barre de recherche responsive -->
-<div class="search-container">
-    <input
-        type="text"
-        id="searchInput"
-        placeholder="Rechercher..."
-        oninput="showSuggestions(this.value)"
-    >
-    <div id="searchSuggestions" class="suggestions"></div>
-</div>
+        <div class="search-container">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Rechercher..."
+                oninput="showSuggestions(this.value)"
+            >
+            <div id="searchSuggestions" class="suggestions"></div>
+        </div>
     
         <!-- Icône burger -->
         <div class="burger-menu" onclick="toggleMobileMenu()">☰</div>
     
         <!-- Menu classique (PC) -->
         <nav>
-            <a href="index.html">Accueil</a>
-            <a href="films.html">Films</a>
-            <a href="series.html">Séries</a>
-            <a href="anime.html">Anime</a>
-            <a href="recherche.html">Recherche</a>
-            <a href="mon-compte.html" id="account-button">Mon compte</a>
+            <a href="../../index.html">Accueil</a>
+            <a href="../../films.html">Films</a>
+            <a href="../../series.html">Séries</a>
+            <a href="../../anime.html">Anime</a>
+            <a href="../../recherche.html">Recherche</a>
+            <a href="../../mon-compte.html" id="account-button">Mon compte</a>
         </nav>
     
         <!-- Menu mobile -->
         <div class="mobile-menu" id="mobileMenu">
-            <a href="index.html">Accueil</a>
-            <a href="films.html">Films</a>
-            <a href="series.html">Séries</a>
-            <a href="anime.html">Anime</a>
-            <a href="recherche.html">Recherche</a>
-            <a href="mon-compte.html" id="account-button">Mon compte</a>
+            <a href="../../index.html">Accueil</a>
+            <a href="../../films.html">Films</a>
+            <a href="../../series.html">Séries</a>
+            <a href="../../anime.html">Anime</a>
+            <a href="../../recherche.html">Recherche</a>
+            <a href="../../mon-compte.html" id="account-button">Mon compte</a>
         </div>
     </header>    
-    <div id="progression"></div>    
-    <div class="content">
-        <h2>Séries</h2>
-        <div class="grid">
-            <div class="item">
-                <img src="https://via.placeholder.com/200x300" alt="Série 1" onclick="window.location.href='serie1.html'">
-                <p>Série 1</p>
-                <a href="serie1.html">Regarder</a>
-            </div>
-            <div class="item">
-                <img src="https://via.placeholder.com/200x300" alt="Série 2" onclick="window.location.href='serie2.html'">
-                <p>Série 2</p>
-                <a href="serie2.html">Regarder</a>
-            </div>
-            <div class="item">
-                <img src="https://via.placeholder.com/200x300" alt="Série 3" onclick="window.location.href='serie3.html'">
-                <p>Série 3</p>
-                <a href="serie3.html">Regarder</a>
-            </div>
-            <div class="item">
-                <img src="https://via.placeholder.com/200x300" alt="Série 4" onclick="window.location.href='serie4.html'">
-                <p>Série 4</p>
-                <a href="serie4.html">Regarder</a>
-            </div>
-            <div class="item">
-                <img src="https://via.placeholder.com/200x300" alt="Série 5" onclick="window.location.href='serie5.html'">
-                <p>Série 5</p>
-                <a href="serie5.html">Regarder</a>
-            </div>
+
+    <div class="banner">
+    </div>
+
+    <div class="description">
+        <h2>Description</h2>
+        <p>
+            Cet anime raconte l'histoire passionnante d'un héros qui lutte pour sauver le monde. Avec des personnages mémorables, 
+            des scènes d'action épiques et une intrigue captivante, cet anime est incontournable pour tous les fans.
+        </p>
+    </div>
+
+    <div class="seasons">
+        <h2>Saisons</h2>
+        
+        <div class="season">
+            <h3>Saison 1</h3>
+            <p>12 épisodes</p>
+            <button onclick="location.href='saison1e1ac.html'">Voir Saison 1</button>
+        </div>
+
+        <div class="season">
+            <h3>Saison 2</h3>
+            <p>12 épisodes</p>
+            <button onclick="location.href='saison2e1.html'">Voir Saison 2</button>
+        </div>
+
         </div>
     </div>
+
+    <footer>
+        <p>&copy; 2024 FlixBox. Tous droits réservés.</p>
+    </footer>
 
     <script>
         const data = [
@@ -181,19 +182,6 @@
             }
         });
     </script>    
-    <script>
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (mobileMenu.style.display === 'flex') {
-                mobileMenu.style.display = 'none';
-            } else {
-                mobileMenu.style.display = 'flex';
-            }
-        }
-    </script>
-    
-    <footer>
-        <p>&copy; 2024 FlixBox. Tous droits réservés.</p>
-    </footer>
+
 </body>
 </html>

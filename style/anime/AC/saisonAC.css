@@ -1,0 +1,256 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #202020;
+    color: #fff;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #1c1c1c;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #e50914;
+}
+
+header nav {
+    display: flex;
+    gap: 15px;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+header nav a:hover {
+    color: #e50914;
+}
+
+.banner {
+    height: 50vh;
+    background: url('https://iili.io/2eB2ilt.png') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+
+.banner h1 {
+    font-size: 48px;
+    margin: 0;
+    text-shadow: 2px 2px 5px #000;
+}
+
+.description {
+    padding: 20px;
+    text-align: center;
+}
+
+.description h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.description p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.seasons {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.season {
+    width: 80%;
+    background-color: #303030;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.season h3 {
+    margin: 0;
+}
+
+.season button {
+    background-color: #e50914;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.season button:hover {
+    background-color: #f40612;
+}
+
+/* Style pour les navigateurs basés sur Webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 10px; /* Largeur de la barre de défilement */
+}
+
+::-webkit-scrollbar-track {
+    background: #202020; /* Couleur de l'arrière-plan */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e50914; /* Couleur de la barre */
+    border-radius: 10px; /* Coins arrondis */
+    border: 2px solid #202020; /* Espacement autour de la barre */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #f40612; /* Couleur de la barre au survol */
+}
+
+/* Style pour Firefox */
+* {
+    scrollbar-width: thin; /* Largeur fine */
+    scrollbar-color: #e50914 #202020; /* Couleurs de la barre et de l'arrière-plan */
+}
+
+/* Icône burger */
+/* Icône burger */
+.burger-menu {
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+    display: none; /* Caché sur les grands écrans */
+}
+
+/* Menu mobile déroulant */
+.mobile-menu {
+    display: none; /* Par défaut, le menu mobile est caché */
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Ajuste selon la hauteur de ton header */
+    right: 20px;
+    background-color: #333;
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.mobile-menu a {
+    color: white;
+    padding: 10px 0;
+    text-decoration: none;
+    border-bottom: 1px solid #444;
+}
+
+.mobile-menu a:last-child {
+    border-bottom: none;
+}
+
+/* Affichage responsive */
+@media screen and (max-width: 768px) {
+    header nav {
+        display: none; /* Cache le menu classique */
+    }
+
+    .burger-menu {
+        display: block; /* Affiche l’icône burger */
+    }
+}
+
+    /* Styles généraux */
+    .search-container {
+        position: relative;
+        margin: 20px auto;
+        width: 50%;
+        max-width: 700px;
+    }
+
+    .search-container input {
+        width: 100%;
+        padding: 0.7rem 1rem;
+        border: 1px solid #444;
+        border-radius: 25px;
+        font-size: 1rem;
+        outline: none;
+        box-sizing: border-box;
+    }
+
+    .search-container input:focus {
+        border-color: #e63946;
+        outline: none;
+    }
+
+    /* Suggestions */
+    .suggestions {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #222;
+        border-radius: 8px;
+        border: 1px solid #444;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        display: none;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .suggestions .suggestion-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .suggestions .suggestion-item:hover {
+        background: #333;
+    }
+
+    .suggestions .suggestion-item img {
+        width: 50px;
+        height: 75px;
+        object-fit: cover;
+        margin-right: 10px;
+        border-radius: 5px;
+    }
+
+    .suggestions .suggestion-item span {
+        color: #fff;
+        font-size: 1rem;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 600px) {
+        .search-container {
+            width: 90%;
+        }
+
+        .suggestions .suggestion-item img {
+            width: 40px;
+            height: 60px;
+        }
+
+        .suggestions .suggestion-item span {
+            font-size: 0.9rem;
+        }
+    }

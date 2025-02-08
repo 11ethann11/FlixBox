@@ -1,42 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style/recherche.css">
-    <title>FlixBox - Recherche</title>
-    <script>
-        async function search() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            const resultsContainer = document.getElementById('results');
-    
-            // Clear previous results
-            resultsContainer.innerHTML = '';
-    
-            // Fetch data
-            const response = await fetch('data.json');
-            const data = await response.json();
-    
-            // Filter results
-            const results = data.filter(item => item.title.toLowerCase().includes(query));
-    
-            // Display results
-            if (results.length > 0) {
-                results.forEach(item => {
-                    const resultItem = document.createElement('div');
-                    resultItem.innerHTML = `<a href="${item.url}" style="color: white; text-decoration: none;">${item.title} (${item.type})</a>`;
-                    resultsContainer.appendChild(resultItem);
-                });
-            } else {
-                resultsContainer.innerHTML = '<p>Aucun résultat trouvé.</p>';
-            }
-        }
-    </script>
-    
+    <link rel="stylesheet" href="/style/mon-compte.css">
+    <title>FlixBox - Mon Compte</title>
 </head>
 <body>
     <header>
         <div class="logo">FlixBox</div>
+        <!-- Barre de recherche responsive -->
+<div class="search-container">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Rechercher..."
+        oninput="showSuggestions(this.value)"
+    >
+    <div id="searchSuggestions" class="suggestions"></div>
+</div>
     
         <!-- Icône burger -->
         <div class="burger-menu" onclick="toggleMobileMenu()">☰</div>
@@ -61,31 +43,92 @@
             <a href="mon-compte.html" id="account-button">Mon compte</a>
         </div>
     </header>    
-    <div id="progression"></div>    
-    <div class="content">
-        <h2>Résultats de recherche</h2>
-        <p>Recherchez vos films, séries ou anime préférés :</p>
-<!-- Barre de recherche responsive -->
-<div class="search-container">
-    <input
-        type="text"
-        id="searchInput"
-        placeholder="Rechercher..."
-        oninput="showSuggestions(this.value)"
-    >
-    <div id="searchSuggestions" class="suggestions"></div>
-</div>
+    <div class="container">
+        <h1>Mon Compte</h1>
+        <div id="user-info">
+            <button onclick="connectWithDiscord()">Se connecter avec Discord</button>
+        </div>
+        <div class="episodes" id="episodes">
+            <h2>Épisodes sauvegardés</h2>
+            <ul id="episodes-list">
+                <li>Connectez-vous pour voir votre progression.</li>
+            </ul>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 FlixBox. Tous droits réservés.</p>
+    </footer>
 
-<script>
-    function toggleMobileMenu() {
-        const mobileMenu = document.getElementById('mobileMenu');
-        if (mobileMenu.style.display === 'flex') {
-            mobileMenu.style.display = 'none';
-        } else {
-            mobileMenu.style.display = 'flex';
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu.style.display === 'flex') {
+                mobileMenu.style.display = 'none';
+            } else {
+                mobileMenu.style.display = 'flex';
+            }
         }
-    }
-</script>
+    </script>
+    <script>
+        const API_URL = 'http://localhost:3000'; // L'URL de votre backend
+
+        // Redirige vers Discord pour la connexion
+        function connectWithDiscord() {
+            const clientId = '1321471340993318984'; // Remplacez par votre ID client Discord
+            const redirectUri = encodeURIComponent(window.location.href); // URL de redirection
+            const scope = 'identify';
+            const authUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token&scope=${scope}`;
+            window.location.href = authUrl;
+        }
+
+        // Vérifie si un utilisateur est connecté
+        function checkLoginStatus() {
+            const params = new URLSearchParams(window.location.hash.substring(1));
+            const accessToken = params.get('access_token') || localStorage.getItem('discord_access_token');
+
+            if (accessToken) {
+                localStorage.setItem('discord_access_token', accessToken); // Stocke le token localement
+                fetch('https://discord.com/api/users/@me', {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`
+                    }
+                })
+                .then(response => response.json())
+                .then(user => {
+                    document.getElementById('user-info').innerHTML = `<p>Connecté en tant que ${user.username}</p>`;
+                    loadSavedEpisodes(user.id);
+                })
+                .catch(() => {
+                    localStorage.removeItem('discord_access_token');
+                    alert("Erreur lors de la connexion avec Discord.");
+                });
+            }
+        }
+
+        // Charge les épisodes sauvegardés
+        function loadSavedEpisodes(userId) {
+            fetch(`${API_URL}/get-progress/${userId}`)
+                .then(response => response.json())
+                .then(progress => {
+                    const episodesList = document.getElementById('episodes-list');
+                    episodesList.innerHTML = '';
+
+                    if (Object.keys(progress).length === 0) {
+                        episodesList.innerHTML = '<li>Aucune progression sauvegardée.</li>';
+                    } else {
+                        for (const [anime, episode] of Object.entries(progress)) {
+                            const li = document.createElement('li');
+                            li.textContent = `${anime} - Épisode ${episode}`;
+                            episodesList.appendChild(li);
+                        }
+                    }
+                });
+        }
+
+        // Au chargement de la page
+        checkLoginStatus();
+    </script>
+
 <script>
     const data = [
         { 
@@ -192,9 +235,5 @@
         }
     });
 </script>    
-
-    <footer>
-        <p>&copy; 2024 FlixBox. Tous droits réservés.</p>
-    </footer>
 </body>
 </html>
